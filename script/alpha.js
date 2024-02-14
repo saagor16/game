@@ -6,6 +6,13 @@
 // }
 function handleKeyboardButtonPress(event){
     const playerPressed = event.key;
+
+
+    //stop game
+    if(playerPressed==='Escape'){
+        gameOver();
+    }
+
     const currentAlphabetElement = document.getElementById('current-alphabet');
     const currentAlphabet =currentAlphabetElement.innerText;
     const expectedAlphabet = currentAlphabet.toLowerCase();
@@ -15,7 +22,7 @@ function handleKeyboardButtonPress(event){
         //function
         const currentScore = getTextElementValueById('current-score');
         const updatedScore = currentScore + 1;
-        
+        setTextElementValueById('current-score', updatedScore);
 
 
         
@@ -32,7 +39,15 @@ function handleKeyboardButtonPress(event){
     else{
         console.log('you missed a life');
 
-        //basic
+        //function 
+        const currentLife = getTextElementValueById('current-life');
+        const updatedLife = currentLife-1;
+        setTextElementValueById('current-life', updatedLife);
+
+        if(updatedLife===0){
+            gameOver();
+        }
+        //basic---------------------
         // const currentLifeElement = document.getElementById('current-life');
         // const currentLifeText = currentLifeElement.innerText;
         // const currentLife = parseInt(currentLifeText);
@@ -53,6 +68,19 @@ function continueGame(){
 
 function play(){
     hideElementById('home-screen');
+    hideElementById('score');
     showElementById('play-ground');
+    setTextElementValueById('current-life',5);
+    setTextElementValueById('current-score',0);
+
     continueGame();
+}
+
+function gameOver(){
+    hideElementById('play-ground');
+    showElementById('score');
+    const lastScore = getTextElementValueById('current-score');
+    setTextElementValueById('last-score', lastScore);
+    const currentAlphabet = getElementTextById('current-alphabet');
+    removeBackgroundColorById(currentAlphabet);
 }
