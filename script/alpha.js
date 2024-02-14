@@ -11,11 +11,34 @@ function handleKeyboardButtonPress(event){
     const expectedAlphabet = currentAlphabet.toLowerCase();
     if(playerPressed === expectedAlphabet){
         console.log('get a point');
+
+        //function
+        const currentScore = getTextElementValueById('current-score');
+        const updatedScore = currentScore + 1;
+        
+
+
+        
+        //basic------------------
+        // const currentScoreElement = document.getElementById('current-score');
+        // const currentScoreText = currentScoreElement.innerText;
+        // const currentScore = parseInt(currentScoreText);
+        // const newScore = currentScore+1;
+        // currentScoreElement.innerText = newScore;
+
         removeBackgroundColorById(expectedAlphabet);
         continueGame();
     }
     else{
         console.log('you missed a life');
+
+        //basic
+        // const currentLifeElement = document.getElementById('current-life');
+        // const currentLifeText = currentLifeElement.innerText;
+        // const currentLife = parseInt(currentLifeText);
+        // const newLife = currentLife-1;
+        // currentLifeElement.innerText = newLife;
+
     }
 }
 document.addEventListener('keyup', handleKeyboardButtonPress)
